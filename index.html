@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ye Kyaw Htoo Sein, PMP® — IT Project Manager &amp; Software Consultant</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand:   { DEFAULT: '#0e7490', light: '#22d3ee', dark: '#0c4a6e' },
+            accent:  { DEFAULT: '#0f766e', light: '#2dd4bf' },
+            surface: { DEFAULT: '#0a0f1e', card: '#0d1629', border: '#1e2d47' }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          },
+          animation: {
+            'fade-up':    'fadeUp 0.7s ease forwards',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4,0,0.6,1) infinite'
+          },
+          keyframes: {
+            fadeUp: { '0%': { opacity: 0, transform: 'translateY(24px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    html { background: #0a0f1e; }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #22d3ee 0%, #2dd4bf 50%, #38bdf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .gradient-text-gold {
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .glow    { box-shadow: 0 0 50px rgba(14,116,144,0.2); }
+    .glow-sm { box-shadow: 0 0 20px rgba(14,116,144,0.12); }
+    .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .card-hover:hover { transform: translateY(-5px); box-shadow: 0 24px 60px rgba(14,116,144,0.22); }
+
+    .nav-link { position: relative; }
+    .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px; background:#22d3ee; transition:width 0.3s ease; }
+    .nav-link:hover::after { width:100%; }
+
+    .skill-bar { transition: width 1.3s cubic-bezier(0.4,0,0.2,1); }
+    .blob { filter:blur(90px); opacity:0.1; border-radius:9999px; position:absolute; pointer-events:none; }
+
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+    .float { animation: float 6s ease-in-out infinite; }
+
+    .cert-badge {
+      background: linear-gradient(135deg, rgba(14,116,144,0.15), rgba(15,118,110,0.1));
+      border: 1px solid rgba(34,211,238,0.2);
+    }
+    .timeline-dot { width:12px; height:12px; border-radius:50%; background:#22d3ee; flex-shrink:0; margin-top:5px; box-shadow:0 0 10px rgba(34,211,238,0.5); }
+    .timeline-line { width:2px; background:linear-gradient(180deg,#22d3ee,transparent); flex-shrink:0; margin-left:5px; }
+
+    .photo-ring {
+      background: conic-gradient(from 0deg, #22d3ee, #2dd4bf, #38bdf8, #0e7490, #22d3ee);
+      padding: 3px;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body class="bg-surface text-slate-200 font-sans antialiased">
+
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 right-0 z-50 border-b border-surface-border bg-surface/85 backdrop-blur-xl">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#home" class="font-mono text-brand-light font-semibold tracking-tight">YKHS<span class="text-slate-500">.</span>dev</a>
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+        <a href="#about"    class="nav-link hover:text-white transition-colors">About</a>
+        <a href="#experience" class="nav-link hover:text-white transition-colors">Experience</a>
+        <a href="#skills"   class="nav-link hover:text-white transition-colors">Skills</a>
+        <a href="#certifications" class="nav-link hover:text-white transition-colors">Certifications</a>
+        <a href="#contact"  class="nav-link hover:text-white transition-colors">Contact</a>
+      </div>
+      <a href="mailto:yekyaw99@gmail.com" class="text-sm font-semibold bg-brand hover:bg-brand-dark text-white px-5 py-2 rounded-full transition-colors duration-200 glow-sm">Hire me</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home" class="relative min-h-screen flex items-center overflow-hidden">
+    <div class="blob w-96 h-96 bg-cyan-600   top-10  -left-32"></div>
+    <div class="blob w-80 h-80 bg-teal-600   bottom-20 right-0"></div>
+    <div class="blob w-64 h-64 bg-sky-700    top-40 right-60"></div>
+
+    <div class="max-w-6xl mx-auto px-6 pt-28 pb-16 grid md:grid-cols-2 gap-12 items-center relative z-10">
+      <!-- Text -->
+      <div class="space-y-7">
+        <div class="inline-flex items-center gap-2 bg-surface-card border border-surface-border rounded-full px-4 py-2 text-sm text-slate-400">
+          <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse-slow"></span>
+          Open to new opportunities in Auckland, NZ
+        </div>
+
+        <div class="space-y-3">
+          <h1 class="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight text-white">
+            Ye Kyaw Htoo Sein
+            <span class="gradient-text-gold text-2xl md:text-3xl block mt-1">PMP®</span>
+          </h1>
+          <p class="text-xl font-semibold text-brand-light">IT Project Manager &amp; Software Consultant</p>
+          <p class="text-slate-400 text-base leading-relaxed max-w-md">
+            15+ years delivering enterprise healthcare &amp; insurance systems across Singapore and New Zealand. Certified PMP®, Scrum Master, and ITIL®.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap gap-4">
+          <a href="#experience" class="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white font-semibold px-7 py-3.5 rounded-full transition-all duration-200 glow-sm hover:glow">
+            View Experience
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="mailto:yekyaw99@gmail.com" class="inline-flex items-center gap-2 border border-surface-border hover:border-brand-light text-slate-300 hover:text-white font-semibold px-7 py-3.5 rounded-full transition-all duration-200">
+            Get In Touch
+          </a>
+        </div>
+
+        <!-- Contact chips -->
+        <div class="flex flex-wrap gap-3 pt-1 text-sm text-slate-500">
+          <span class="flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-brand-light" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            yekyaw99@gmail.com
+          </span>
+          <span class="flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-brand-light" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            +64 29 022 14853
+          </span>
+          <span class="flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-brand-light" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            Auckland, New Zealand
+          </span>
+        </div>
+      </div>
+
+      <!-- Photo -->
+      <div class="hidden md:flex justify-center">
+        <div class="float relative">
+          <div class="photo-ring">
+            <img src="profile.jpg" alt="Ye Kyaw Htoo Sein" class="w-72 h-72 object-cover object-top rounded-full" />
+          </div>
+          <!-- Floating stat cards -->
+          <div class="absolute -top-4 -right-6 bg-surface-card border border-surface-border rounded-2xl px-4 py-3 glow-sm">
+            <p class="text-xs text-slate-500 font-mono">experience</p>
+            <p class="text-2xl font-bold text-white">15+ yrs</p>
+          </div>
+          <div class="absolute -bottom-4 -left-6 bg-surface-card border border-surface-border rounded-2xl px-4 py-3 glow-sm">
+            <p class="text-xs text-slate-500 font-mono">projects delivered</p>
+            <p class="text-2xl font-bold text-white">$1.5M+</p>
+          </div>
+          <div class="absolute top-1/2 -right-16 -translate-y-1/2 bg-surface-card border border-surface-border rounded-2xl px-3 py-2 glow-sm">
+            <p class="text-xs text-slate-500 font-mono">certified</p>
+            <p class="text-sm font-bold text-amber-400">PMP® ✓</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="py-24 bg-surface-card/50">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <p class="font-mono text-brand-light text-sm mb-3 tracking-widest uppercase">Who I am</p>
+        <h2 class="text-4xl font-bold text-white">Professional Summary</h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-14 items-center">
+        <div class="space-y-5 text-slate-400 leading-relaxed">
+          <p class="text-lg text-slate-300">IT Project Manager &amp; Software Consultant with <strong class="text-white">15 years of experience</strong> in software development, project delivery, and IT service management.</p>
+          <p>Proven success leading cross-functional teams, delivering enterprise <strong class="text-slate-200">healthcare and insurance systems</strong>, and managing projects up to <strong class="text-slate-200">$1.5M</strong>. Currently transitioning into New Zealand's tech sector.</p>
+          <p>Certified <strong class="text-amber-400">PMP®</strong>, <strong class="text-amber-400">Scrum Master</strong>, and <strong class="text-amber-400">ITIL®</strong>. Skilled in Agile and Waterfall methodologies, stakeholder engagement, and enterprise system integration.</p>
+          <p class="text-sm text-slate-500">MBA Candidate at Massey University Auckland (2026–2027)</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-surface border border-surface-border rounded-2xl p-5 card-hover">
+            <p class="text-3xl font-bold text-white mb-1">15+</p>
+            <p class="text-sm text-slate-500">Years of experience</p>
+          </div>
+          <div class="bg-surface border border-surface-border rounded-2xl p-5 card-hover">
+            <p class="text-3xl font-bold text-white mb-1">$1.5M</p>
+            <p class="text-sm text-slate-500">Projects managed</p>
+          </div>
+          <div class="bg-surface border border-surface-border rounded-2xl p-5 card-hover">
+            <p class="text-3xl font-bold text-white mb-1">8</p>
+            <p class="text-sm text-slate-500">Team members led</p>
+          </div>
+          <div class="bg-surface border border-surface-border rounded-2xl p-5 card-hover">
+            <p class="text-3xl font-bold text-white mb-1">5</p>
+            <p class="text-sm text-slate-500">Certifications held</p>
+          </div>
+          <div class="col-span-2 bg-surface border border-surface-border rounded-2xl p-5 card-hover">
+            <p class="text-xs text-slate-500 font-mono mb-2 uppercase tracking-wider">Domain Expertise</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="text-xs bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 rounded-full px-3 py-1">Healthcare IT</span>
+              <span class="text-xs bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 rounded-full px-3 py-1">Insurance IT</span>
+              <span class="text-xs bg-teal-500/10 text-teal-400 border border-teal-500/20 rounded-full px-3 py-1">Agile / Scrum</span>
+              <span class="text-xs bg-teal-500/10 text-teal-400 border border-teal-500/20 rounded-full px-3 py-1">ITIL® ITSM</span>
+              <span class="text-xs bg-sky-500/10 text-sky-400 border border-sky-500/20 rounded-full px-3 py-1">Enterprise Integration</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE TIMELINE -->
+  <section id="experience" class="py-24 relative overflow-hidden">
+    <div class="blob w-80 h-80 bg-cyan-700 top-20 -right-20"></div>
+    <div class="max-w-4xl mx-auto px-6 relative z-10">
+      <div class="text-center mb-14">
+        <p class="font-mono text-brand-light text-sm mb-3 tracking-widest uppercase">Career journey</p>
+        <h2 class="text-4xl font-bold text-white">Professional Experience</h2>
+      </div>
+
+      <div class="space-y-0">
+
+        <!-- Income Insurance - AM -->
+        <div class="flex gap-6">
+          <div class="flex flex-col items-center">
+            <div class="timeline-dot mt-1.5"></div>
+            <div class="timeline-line flex-1 mt-1"></div>
+          </div>
+          <div class="pb-10 flex-1">
+            <div class="bg-surface-card border border-surface-border rounded-2xl p-6 card-hover glow-sm">
+              <div class="flex flex-wrap items-start justify-between gap-3 mb-3">
+                <div>
+                  <h3 class="text-lg font-bold text-white">Assistant Manager (SE) / Software Consultant</h3>
+                  <p class="text-brand-light font-medium">Income Insurance Ltd. · Singapore</p>
+                </div>
+                <span class="font-mono text-xs text-slate-500 bg-surface border border-surface-border rounded-full px-3 py-1 whitespace-nowrap">Aug 2022 – Mar 2026</span>
+              </div>
+              <ul class="space-y-2 text-sm text-slate-400">
+                <li class="flex gap-2"><span class="text-brand-light mt-0.5">▸</span>Acted as Delivery Manager for Java and .NET systems, overseeing quarterly enhancements</li>
+                <li class="flex gap-2"><span class="text-brand-light mt-0.5">▸</span>Led team of 8 (BAs, developers, vendors) across full project lifecycle</li>
+                <li class="flex gap-2"><span class="text-brand-light mt-0.5">▸</span>Collaborated with IT (RPA, Infra, Systems) for solution planning and execution</li>
+                <li class="flex gap-2"><span class="text-brand-light mt-0.5">▸</span>Provided L1/L2 support and incident resolution within SLA timelines</li>
+                <li class="flex gap-2"><span class="text-brand-light mt-0.5">▸</span>Presented new IT initiatives to senior stakeholders</li>
+              </ul>
+              <div class="flex flex-wrap gap-2 mt-4">
+                <span class="text-xs bg-surface border border-surface-border text-slate-400 rounded-full px-3 py-1">Java</span>
+                <span class="text-xs bg-surface border border-surface-border text-slate-400 rounded-full px-3 py-1">.NET</span>
+                <span class="text-xs bg-surface border border-surface-border text-slate-400 rounded-full px-3 py-1">Delivery Management</span>
+                <span class="text-xs bg-surface border border-surface-border text-slate-400 rounded-full px-3 py-1">Stakeholder Mgmt</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ridik -->
+        <div class="flex gap-6">
+          <div class="flex flex-col items-center">
+            <div class="timeline-dot" style="background:#2dd4bf; box-shadow:0 0 10px rgba(45,212,191,0.5)"></div>
+            <div class="timeline-line flex-1 mt-1"></div>
+          </div>
+          <div class="pb-10 flex-1">
+            <div class="bg-surface-card border border-surface-border rounded-2xl p-6 card-hover">
+              <div class="flex flex-wrap items-start justify-between gap-3 mb-3">
+                <div>
+                  <h3 class="text-lg font-bold text-white">Software Engineer / Software Consultant</h3>
+                  <p class="text-teal-400 font-medium">Ridik Pte. Ltd. (Deployed to Income Insurance) · Singapore</p>
+                </div>
+                <span class="font-mono text-xs text-slate-500 bg-surface border border-surface-border rounded-full px-3 py-1 whitespace-nowrap">Nov 2021 – Jul 2022</span>
+              </div>
+              <ul class="space-y-2 text-sm text-slate-400">
+                <li class="flex gap-2"><span class="text-teal-400 mt-0.5">▸</span>Developed CRs for Leads Management System (LMS) and WBIS Agent System</li>
+                <li class="flex gap-2"><span class="text-teal-400 mt-0.5">▸</span>Conducted impact analysis and feasibility reports; guided dev team on enhancements</li>
+                <li class="flex gap-2"><span class="text-teal-400 mt-0.5">▸</span>Supported SIT, UAT, QA processes before production deployment</li>
+                <li class="flex gap-2"><span class="text-teal-400 mt-0.5">▸</span>Handled production data patching, ad-hoc queries, and reporting</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- IHIS -->
+        <div class="flex gap-6">
+          <div class="flex flex-col items-center">
+            <div class="timeline-dot" style="background:#38bdf8; box-shadow:0 0 10px rgba(56,189,248,0.5)"></div>
+            <div class="timeline-line flex-1 mt-1"></div>
+          </div>
+          <div class="pb-10 flex-1">
+            <div class="bg-surface-card border border-surface-border rounded-2xl p-6 card-hover">
+              <div class="flex flex-wrap items-start justify-between gap-3 mb-3">
+                <div>
+                  <h3 class="text-lg font-bold text-white">Assistant Lead Analyst / Associate Project Manager</h3>
+                  <p class="text-sky-400 font-medium">IHIS – Integrated Health Information Systems · Singapore</p>
+                </div>
+                <span class="font-mono text-xs text-slate-500 bg-surface border border-surface-border rounded-full px-3 py-1 whitespace-nowrap">Jul 2019 – Nov 2021</span>
+              </div>
+              <ul class="space-y-2 text-sm text-slate-400">
+                <li class="flex gap-2"><span class="text-sky-400 mt-0.5">▸</span>Delivered healthcare IT projects worth <strong class="text-white">$1.5M annually</strong></li>
+                <li class="flex gap-2"><span class="text-sky-400 mt-0.5">▸</span>Directed vendor management, contract negotiation, and SLA compliance</li>
+                <li class="flex gap-2"><span class="text-sky-400 mt-0.5">▸</span>Led functional/technical troubleshooting for hospital systems</li>
+                <li class="flex gap-2"><span class="text-sky-400 mt-0.5">▸</span>Improved turnaround time by optimizing vendor support workflows</li>
+              </ul>
+              <div class="flex flex-wrap gap-2 mt-4">
+                <span class="text-xs bg-surface border border-surface-border text-slate-400 rounded-full px-3 py-1">Healthcare IT</span>
+                <span class="text-xs bg-surface border border-surface-border text-slate-400 rounded-full px-3 py-1">Vendor Management</span>
+                <span class="text-xs bg-surface border border-surface-border text-slate-400 rounded-full px-3 py-1">SLA Compliance</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Meteorite -->
+        <div class="flex gap-6">
+          <div class="flex flex-col items-center">
+            <div class="timeline-dot" style="background:#818cf8; box-shadow:0 0 10px rgba(129,140,248,0.5)"></div>
+            <div class="timeline-line flex-1 mt-1"></div>
+          </div>
+          <div class="pb-10 flex-1">
+            <div class="bg-surface-card border border-surface-border rounded-2xl p-6 card-hover">
+              <div class="flex flex-wrap items-start justify-between gap-3 mb-3">
+                <div>
+                  <h3 class="text-lg font-bold text-white">Senior System Analyst / Senior Software Engineer</h3>
+                  <p class="text-indigo-400 font-medium">Meteorite Informatics (Deployed to Parkway Pantai Group) · Singapore</p>
+                </div>
+                <span class="font-mono text-xs text-slate-500 bg-surface border border-surface-border rounded-full px-3 py-1 whitespace-nowrap">Sep 2018 – Jun 2019</span>
+              </div>
+              <ul class="space-y-2 text-sm text-slate-400">
+                <li class="flex gap-2"><span class="text-indigo-400 mt-0.5">▸</span>Integrated clinical system data into Singapore's National Electronic Health Record (NEHR)</li>
+                <li class="flex gap-2"><span class="text-indigo-400 mt-0.5">▸</span>Designed SQL stored procedures, optimized XML reporting, and built ad-hoc reports</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- R Systems -->
+        <div class="flex gap-6">
+          <div class="flex flex-col items-center">
+            <div class="timeline-dot" style="background:#f472b6; box-shadow:0 0 10px rgba(244,114,182,0.5)"></div>
+            <div class="timeline-line flex-1 mt-1"></div>
+          </div>
+          <div class="pb-10 flex-1">
+            <div class="bg-surface-card border border-surface-border rounded-2xl p-6 card-hover">
+              <div class="flex flex-wrap items-start justify-between gap-3 mb-3">
+                <div>
+                  <h3 class="text-lg font-bold text-white">Senior Software Engineer / Team Lead</h3>
+                  <p class="text-pink-400 font-medium">R Systems Pte. Ltd. (Deployed to Income Insurance) · Singapore</p>
+                </div>
+                <span class="font-mono text-xs text-slate-500 bg-surface border border-surface-border rounded-full px-3 py-1 whitespace-nowrap">Oct 2014 – Aug 2018</span>
+              </div>
+              <ul class="space-y-2 text-sm text-slate-400">
+                <li class="flex gap-2"><span class="text-pink-400 mt-0.5">▸</span>Delivered enhancements for Lead Management System and agent commission platforms</li>
+                <li class="flex gap-2"><span class="text-pink-400 mt-0.5">▸</span>Conducted feasibility analysis, QA/UAT support, and production rollouts</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- NCS -->
+        <div class="flex gap-6">
+          <div class="flex flex-col items-center">
+            <div class="timeline-dot" style="background:#34d399; box-shadow:0 0 10px rgba(52,211,153,0.5)"></div>
+            <div class="timeline-line flex-1 mt-1 opacity-0"></div>
+          </div>
+          <div class="pb-4 flex-1">
+            <div class="bg-surface-card border border-surface-border rounded-2xl p-6 card-hover">
+              <div class="flex flex-wrap items-start justify-between gap-3 mb-3">
+                <div>
+                  <h3 class="text-lg font-bold text-white">Application Consultant</h3>
+                  <p class="text-emerald-400 font-medium">NCS Pte. Ltd. · Singapore</p>
+                </div>
+                <span class="font-mono text-xs text-slate-500 bg-surface border border-surface-border rounded-full px-3 py-1 whitespace-nowrap">Feb 2011 – Oct 2014</span>
+              </div>
+              <ul class="space-y-2 text-sm text-slate-400">
+                <li class="flex gap-2"><span class="text-emerald-400 mt-0.5">▸</span>Developed Automated Pharmacy Dispensing System — <strong class="text-white">CIO Asia Award 2014</strong></li>
+                <li class="flex gap-2"><span class="text-emerald-400 mt-0.5">▸</span>Designed Electronic Meal Ordering System (eMOS) deployed across SGH, NUH, CGH, TTSH, FPH</li>
+                <li class="flex gap-2"><span class="text-emerald-400 mt-0.5">▸</span>Integrated SAP with hospital systems for 360° customer view</li>
+              </ul>
+              <div class="mt-3 inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs rounded-full px-3 py-1">
+                🏆 CIO Asia Award 2014
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="py-24 bg-surface-card/50">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <p class="font-mono text-brand-light text-sm mb-3 tracking-widest uppercase">Capabilities</p>
+        <h2 class="text-4xl font-bold text-white">Technical Skills</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-12">
+        <!-- Skill bars -->
+        <div id="skill-bars" class="space-y-5">
+          <h3 class="text-lg font-semibold text-white mb-6">Core Proficiencies</h3>
+          <div>
+            <div class="flex justify-between text-sm mb-2"><span class="text-slate-300 font-medium">Project &amp; Delivery Management</span><span class="text-brand-light font-mono">95%</span></div>
+            <div class="h-2 bg-surface-border rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-brand to-cyan-400 rounded-full skill-bar" style="width:0%" data-width="95%"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm mb-2"><span class="text-slate-300 font-medium">Agile / Scrum / Waterfall</span><span class="text-brand-light font-mono">92%</span></div>
+            <div class="h-2 bg-surface-border rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-brand to-cyan-400 rounded-full skill-bar" style="width:0%" data-width="92%"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm mb-2"><span class="text-slate-300 font-medium">Stakeholder &amp; Vendor Management</span><span class="text-brand-light font-mono">90%</span></div>
+            <div class="h-2 bg-surface-border rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-brand to-cyan-400 rounded-full skill-bar" style="width:0%" data-width="90%"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm mb-2"><span class="text-slate-300 font-medium">C# / .NET / Java</span><span class="text-brand-light font-mono">85%</span></div>
+            <div class="h-2 bg-surface-border rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-brand to-cyan-400 rounded-full skill-bar" style="width:0%" data-width="85%"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm mb-2"><span class="text-slate-300 font-medium">SQL / Oracle / SQL Server</span><span class="text-brand-light font-mono">88%</span></div>
+            <div class="h-2 bg-surface-border rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-brand to-cyan-400 rounded-full skill-bar" style="width:0%" data-width="88%"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm mb-2"><span class="text-slate-300 font-medium">ITIL® / IT Service Management</span><span class="text-brand-light font-mono">85%</span></div>
+            <div class="h-2 bg-surface-border rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-brand to-cyan-400 rounded-full skill-bar" style="width:0%" data-width="85%"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm mb-2"><span class="text-slate-300 font-medium">Data &amp; BI (Looker, Sisense, SSRS)</span><span class="text-brand-light font-mono">78%</span></div>
+            <div class="h-2 bg-surface-border rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-brand to-cyan-400 rounded-full skill-bar" style="width:0%" data-width="78%"></div></div>
+          </div>
+        </div>
+
+        <!-- Tech grid -->
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-6">Technologies &amp; Tools</h3>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="bg-surface border border-surface-border rounded-xl p-4">
+              <p class="text-xs text-slate-500 font-mono mb-2 uppercase">Languages</p>
+              <p class="text-sm text-slate-300">C#, VB.Net, Java, JavaScript, SQL, PL/SQL</p>
+            </div>
+            <div class="bg-surface border border-surface-border rounded-xl p-4">
+              <p class="text-xs text-slate-500 font-mono mb-2 uppercase">Frameworks</p>
+              <p class="text-sm text-slate-300">ASP.NET, WCF, ADO.NET, J2EE</p>
+            </div>
+            <div class="bg-surface border border-surface-border rounded-xl p-4">
+              <p class="text-xs text-slate-500 font-mono mb-2 uppercase">Databases</p>
+              <p class="text-sm text-slate-300">SQL Server, Oracle, MySQL</p>
+            </div>
+            <div class="bg-surface border border-surface-border rounded-xl p-4">
+              <p class="text-xs text-slate-500 font-mono mb-2 uppercase">DevOps / Cloud</p>
+              <p class="text-sm text-slate-300">AWS, Git, Jenkins, TFS, SVN</p>
+            </div>
+            <div class="bg-surface border border-surface-border rounded-xl p-4">
+              <p class="text-xs text-slate-500 font-mono mb-2 uppercase">BI &amp; Reporting</p>
+              <p class="text-sm text-slate-300">SSRS, Crystal Reports, Looker, Sisense</p>
+            </div>
+            <div class="bg-surface border border-surface-border rounded-xl p-4">
+              <p class="text-xs text-slate-500 font-mono mb-2 uppercase">Methodologies</p>
+              <p class="text-sm text-slate-300">Agile, Scrum, Waterfall, SDLC, BA</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications" class="py-24 relative overflow-hidden">
+    <div class="blob w-80 h-80 bg-teal-700 bottom-0 left-0"></div>
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+      <div class="text-center mb-14">
+        <p class="font-mono text-brand-light text-sm mb-3 tracking-widest uppercase">Credentials</p>
+        <h2 class="text-4xl font-bold text-white">Certifications &amp; Education</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 mb-12">
+        <!-- PMP -->
+        <div class="cert-badge rounded-2xl p-6 card-hover">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+              <span class="text-2xl">🏅</span>
+            </div>
+            <div>
+              <h3 class="font-bold text-white text-lg">PMP® — Project Management Professional</h3>
+              <p class="text-slate-400 text-sm mt-1">Project Management Institute</p>
+              <p class="text-amber-400 text-xs font-mono mt-2">Certified Aug 2025</p>
+            </div>
+          </div>
+        </div>
+        <!-- PSM -->
+        <div class="cert-badge rounded-2xl p-6 card-hover">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-cyan-500/20 flex items-center justify-center flex-shrink-0">
+              <span class="text-2xl">⚡</span>
+            </div>
+            <div>
+              <h3 class="font-bold text-white text-lg">Professional Scrum Master I</h3>
+              <p class="text-slate-400 text-sm mt-1">Scrum.org</p>
+              <p class="text-cyan-400 text-xs font-mono mt-2">Certified Feb 2024</p>
+            </div>
+          </div>
+        </div>
+        <!-- ITIL -->
+        <div class="cert-badge rounded-2xl p-6 card-hover">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-teal-500/20 flex items-center justify-center flex-shrink-0">
+              <span class="text-2xl">🔧</span>
+            </div>
+            <div>
+              <h3 class="font-bold text-white text-lg">ITIL® Foundation in IT Service Management</h3>
+              <p class="text-slate-400 text-sm mt-1">AXELOS</p>
+              <p class="text-teal-400 text-xs font-mono mt-2">Certified Mar 2020</p>
+            </div>
+          </div>
+        </div>
+        <!-- MCSD -->
+        <div class="cert-badge rounded-2xl p-6 card-hover">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+              <span class="text-2xl">🪟</span>
+            </div>
+            <div>
+              <h3 class="font-bold text-white">MCSA &amp; MCSD — Microsoft Certified</h3>
+              <p class="text-slate-400 text-sm mt-1">Microsoft · HTML5, JavaScript, CSS3 Specialist</p>
+              <p class="text-blue-400 text-xs font-mono mt-2">2014 – 2016</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Education -->
+      <h3 class="text-xl font-bold text-white mb-5">Education</h3>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-surface-card border border-surface-border rounded-2xl p-5">
+          <p class="text-xs text-brand-light font-mono mb-2 uppercase">2026–2027</p>
+          <p class="font-semibold text-white">MBA Candidate</p>
+          <p class="text-slate-400 text-sm mt-1">Massey University Auckland, New Zealand</p>
+        </div>
+        <div class="bg-surface-card border border-surface-border rounded-2xl p-5">
+          <p class="text-xs text-brand-light font-mono mb-2 uppercase">2010–2011</p>
+          <p class="font-semibold text-white">Grad. Diploma in System Analysis</p>
+          <p class="text-slate-400 text-sm mt-1">NUS-ISS, Singapore</p>
+        </div>
+        <div class="bg-surface-card border border-surface-border rounded-2xl p-5">
+          <p class="text-xs text-brand-light font-mono mb-2 uppercase">2007–2008</p>
+          <p class="font-semibold text-white">B.Sc. (Hons) Business Computing &amp; IT</p>
+          <p class="text-slate-400 text-sm mt-1">University of Wales</p>
+        </div>
+        <div class="bg-surface-card border border-surface-border rounded-2xl p-5">
+          <p class="text-xs text-brand-light font-mono mb-2 uppercase">2001–2004</p>
+          <p class="font-semibold text-white">B.A. English</p>
+          <p class="text-slate-400 text-sm mt-1">University of Distance Education, Myanmar</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-24 bg-surface-card/50">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="bg-surface border border-surface-border rounded-3xl p-10 md:p-14 glow text-center">
+        <p class="font-mono text-brand-light text-sm mb-4 tracking-widest uppercase">Let's connect</p>
+        <h2 class="text-4xl font-bold text-white mb-4">Get In Touch</h2>
+        <p class="text-slate-400 mb-10 max-w-md mx-auto leading-relaxed">
+          Looking for a seasoned IT Project Manager or Software Consultant in Auckland? I'd love to discuss how I can contribute to your team.
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-4 mb-10">
+          <a href="mailto:yekyaw99@gmail.com" class="flex flex-col items-center gap-3 bg-surface-card border border-surface-border hover:border-brand-light rounded-2xl p-5 transition-colors card-hover">
+            <div class="w-10 h-10 rounded-xl bg-brand/20 flex items-center justify-center">
+              <svg class="w-5 h-5 text-brand-light" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            <div>
+              <p class="text-xs text-slate-500 mb-1">Email</p>
+              <p class="text-sm text-white font-medium">yekyaw99@gmail.com</p>
+            </div>
+          </a>
+          <a href="tel:+6429022148" class="flex flex-col items-center gap-3 bg-surface-card border border-surface-border hover:border-brand-light rounded-2xl p-5 transition-colors card-hover">
+            <div class="w-10 h-10 rounded-xl bg-brand/20 flex items-center justify-center">
+              <svg class="w-5 h-5 text-brand-light" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            </div>
+            <div>
+              <p class="text-xs text-slate-500 mb-1">Phone</p>
+              <p class="text-sm text-white font-medium">+64 29 022 14853</p>
+            </div>
+          </a>
+          <div class="flex flex-col items-center gap-3 bg-surface-card border border-surface-border rounded-2xl p-5">
+            <div class="w-10 h-10 rounded-xl bg-brand/20 flex items-center justify-center">
+              <svg class="w-5 h-5 text-brand-light" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            </div>
+            <div>
+              <p class="text-xs text-slate-500 mb-1">Location</p>
+              <p class="text-sm text-white font-medium">Auckland, NZ 0620</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ─────────────────────────────────────────────────────────────
+             EMAILJS SETUP  (one-time, ~3 minutes)
+             1. Go to https://www.emailjs.com → sign up free (use yekyaw99@gmail.com)
+             2. Add Email Service → Gmail → connect your Gmail → note SERVICE_ID
+             3. Create Email Template → use these variables:
+                  Subject:  New portfolio contact from {{from_name}}
+                  Body:     Name: {{from_name}}
+                            Email: {{reply_to}}
+                            Message: {{message}}
+                → note TEMPLATE_ID
+             4. Account → API Keys → copy Public Key
+             5. Replace the three REPLACE_ME values below and you're done.
+        ──────────────────────────────────────────────────────────────── -->
+        <form id="contact-form" class="space-y-4 text-left" novalidate>
+          <!-- Honeypot: hidden from real users, bots fill it automatically -->
+          <div style="position:absolute;left:-9999px;top:-9999px;opacity:0;pointer-events:none" aria-hidden="true">
+            <label for="website">Website (do not fill)</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+          </div>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-slate-400 mb-2">Name <span class="text-red-400">*</span></label>
+              <input id="from_name" name="from_name" type="text" required placeholder="Your name" maxlength="100" autocomplete="name"
+                class="w-full bg-surface-card border border-surface-border text-white placeholder-slate-600 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-light transition-colors" />
+              <p class="field-error hidden text-red-400 text-xs mt-1">Please enter your name.</p>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-400 mb-2">Email <span class="text-red-400">*</span></label>
+              <input id="reply_to" name="reply_to" type="email" required placeholder="you@company.com" maxlength="200" autocomplete="email"
+                class="w-full bg-surface-card border border-surface-border text-white placeholder-slate-600 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-light transition-colors" />
+              <p class="field-error hidden text-red-400 text-xs mt-1">Please enter a valid email.</p>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-400 mb-2">Message <span class="text-red-400">*</span></label>
+            <textarea id="message" name="message" rows="4" required placeholder="Tell me about the opportunity..." maxlength="2000"
+              class="w-full bg-surface-card border border-surface-border text-white placeholder-slate-600 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-light transition-colors resize-none"></textarea>
+            <p id="msg-counter" class="text-right text-xs text-slate-600 mt-1">0 / 2000</p>
+            <p class="field-error hidden text-red-400 text-xs mt-1">Please enter a message.</p>
+          </div>
+
+          <!-- Submit button -->
+          <button id="submit-btn" type="submit"
+            class="w-full flex items-center justify-center gap-3 bg-brand hover:bg-brand-dark text-white font-semibold py-4 rounded-xl transition-all duration-200 glow-sm hover:glow disabled:opacity-60 disabled:cursor-not-allowed">
+            <span id="btn-text">Send Message</span>
+            <!-- Spinner (hidden by default) -->
+            <svg id="btn-spinner" class="hidden w-5 h-5 animate-spin" viewBox="0 0 24 24" fill="none">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"/>
+            </svg>
+          </button>
+
+          <!-- Status banner -->
+          <div id="form-status" class="hidden rounded-xl px-5 py-4 text-sm font-medium text-center"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-surface-border py-8">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-600">
+      <p class="font-mono text-brand-light font-semibold">Ye Kyaw Htoo Sein, PMP®</p>
+      <p>© 2026 · Auckland, New Zealand · yekyaw99@gmail.com</p>
+      <a href="#home" class="hover:text-slate-400 transition-colors">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    // ── EmailJS credentials ── replace these three values after setup ──
+    const EMAILJS_PUBLIC_KEY  = 'VBuUJlVz_So8Vu5EC';
+    const EMAILJS_SERVICE_ID  = 'service_oeeps47';
+    const EMAILJS_TEMPLATE_ID = 'template_m94ak55';
+
+    // Init EmailJS
+    if (EMAILJS_PUBLIC_KEY !== 'REPLACE_ME_PUBLIC_KEY') {
+      emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+    }
+
+    // ── Skill bar animation ──
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.skill-bar').forEach(b => { b.style.width = b.dataset.width; });
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    const sb = document.getElementById('skill-bars');
+    if (sb) obs.observe(sb);
+
+    // ── Nav active state ──
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+      navLinks.forEach(l => {
+        l.classList.toggle('text-white', l.getAttribute('href') === '#' + current);
+        l.classList.toggle('text-slate-400', l.getAttribute('href') !== '#' + current);
+      });
+    });
+
+    // ── Contact form ──
+    const form      = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const btnText   = document.getElementById('btn-text');
+    const spinner   = document.getElementById('btn-spinner');
+    const status    = document.getElementById('form-status');
+
+    function setLoading(on) {
+      submitBtn.disabled = on;
+      btnText.textContent = on ? 'Sending…' : 'Send Message';
+      spinner.classList.toggle('hidden', !on);
+    }
+
+    function showStatus(msg, ok) {
+      status.textContent = msg;
+      status.className = [
+        'rounded-xl px-5 py-4 text-sm font-medium text-center',
+        ok ? 'bg-emerald-500/15 border border-emerald-500/30 text-emerald-400'
+           : 'bg-red-500/15 border border-red-500/30 text-red-400'
+      ].join(' ');
+      status.classList.remove('hidden');
+    }
+
+    function validate() {
+      let ok = true;
+      form.querySelectorAll('[required]').forEach(el => {
+        const err = el.nextElementSibling;
+        const empty = !el.value.trim();
+        const badEmail = el.type === 'email' && el.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value);
+        const invalid  = empty || badEmail;
+        el.classList.toggle('border-red-500', invalid);
+        if (err && err.classList.contains('field-error')) err.classList.toggle('hidden', !invalid);
+        if (invalid) ok = false;
+      });
+      return ok;
+    }
+
+    // Clear field errors on input
+    form.querySelectorAll('[required]').forEach(el => {
+      el.addEventListener('input', () => {
+        el.classList.remove('border-red-500');
+        const err = el.nextElementSibling;
+        if (err && err.classList.contains('field-error')) err.classList.add('hidden');
+        status.classList.add('hidden');
+      });
+    });
+
+    // ── Character counter ──
+    const msgArea    = document.getElementById('message');
+    const msgCounter = document.getElementById('msg-counter');
+    msgArea.addEventListener('input', () => {
+      const len = msgArea.value.length;
+      msgCounter.textContent = `${len} / 2000`;
+      msgCounter.classList.toggle('text-red-400', len > 1800);
+      msgCounter.classList.toggle('text-slate-600', len <= 1800);
+    });
+
+    // ── Rate limiting (60s cooldown via localStorage) ──
+    const RATE_LIMIT_MS = 60_000;
+    function isRateLimited() {
+      const last = parseInt(localStorage.getItem('contact_last_sent') || '0', 10);
+      return Date.now() - last < RATE_LIMIT_MS;
+    }
+    function recordSend() {
+      localStorage.setItem('contact_last_sent', Date.now().toString());
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      status.classList.add('hidden');
+
+      // Honeypot check
+      if (document.getElementById('website').value) return;
+
+      // Rate limit check
+      if (isRateLimited()) {
+        const secsLeft = Math.ceil((RATE_LIMIT_MS - (Date.now() - parseInt(localStorage.getItem('contact_last_sent'), 10))) / 1000);
+        showStatus(`Please wait ${secsLeft}s before sending another message.`, false);
+        return;
+      }
+
+      if (!validate()) return;
+
+      // Not yet configured — helpful notice
+      if (EMAILJS_PUBLIC_KEY === 'REPLACE_ME_PUBLIC_KEY') {
+        showStatus('⚠️ EmailJS not configured yet. Follow the setup comment in the HTML to enable real email sending.', false);
+        return;
+      }
+
+      setLoading(true);
+      try {
+        await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form);
+        recordSend();
+        showStatus('✓ Message sent! I\'ll get back to you within 24 hours.', true);
+        form.reset();
+        msgCounter.textContent = '0 / 2000';
+      } catch (err) {
+        console.error('EmailJS error:', err);
+        showStatus('Something went wrong. Please email me directly at yekyaw99@gmail.com', false);
+      } finally {
+        setLoading(false);
+      }
+    });
+  </script>
+</body>
+</html>
