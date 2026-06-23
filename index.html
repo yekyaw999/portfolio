@@ -81,7 +81,7 @@
 
   <!-- NAV -->
   <nav class="fixed top-0 left-0 right-0 z-50 border-b border-surface-border bg-surface/85 backdrop-blur-xl">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between relative">
       <a href="#home" class="font-mono text-brand-light font-semibold tracking-tight">YEKYAW<span class="text-slate-500">.</span>DEV</a>
       <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
         <a href="#about"    class="nav-link hover:text-white transition-colors">About</a>
@@ -90,7 +90,23 @@
         <a href="#certifications" class="nav-link hover:text-white transition-colors">Certifications</a>
         <a href="#contact"  class="nav-link hover:text-white transition-colors">Contact</a>
       </div>
-      <a href="mailto:hello@yekyaw.dev" class="text-sm font-semibold bg-brand hover:bg-brand-dark text-white px-5 py-2 rounded-full transition-colors duration-200 glow-sm">Hire me</a>
+      <div class="flex items-center gap-3">
+        <a href="mailto:hello@yekyaw.dev" class="text-sm font-semibold bg-brand hover:bg-brand-dark text-white px-5 py-2 rounded-full transition-colors duration-200 glow-sm">Hire me</a>
+        <!-- Hamburger -->
+        <button id="menu-btn" class="md:hidden flex flex-col gap-1.5 p-2" onclick="toggleMenu()">
+          <span class="w-5 h-0.5 bg-slate-400 block transition-all"></span>
+          <span class="w-5 h-0.5 bg-slate-400 block transition-all"></span>
+          <span class="w-5 h-0.5 bg-slate-400 block transition-all"></span>
+        </button>
+      </div>
+      <!-- Mobile menu -->
+      <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 right-0 bg-surface/95 backdrop-blur-xl border-b border-surface-border px-6 py-4 flex flex-col gap-4 text-sm font-medium text-slate-400">
+        <a href="#about"         onclick="toggleMenu()" class="hover:text-white transition-colors py-1">About</a>
+        <a href="#experience"    onclick="toggleMenu()" class="hover:text-white transition-colors py-1">Experience</a>
+        <a href="#skills"        onclick="toggleMenu()" class="hover:text-white transition-colors py-1">Skills</a>
+        <a href="#certifications" onclick="toggleMenu()" class="hover:text-white transition-colors py-1">Certifications</a>
+        <a href="#contact"       onclick="toggleMenu()" class="hover:text-white transition-colors py-1">Contact</a>
+      </div>
     </div>
   </nav>
 
@@ -101,6 +117,17 @@
     <div class="blob w-64 h-64 bg-sky-700    top-40 right-60"></div>
 
     <div class="max-w-6xl mx-auto px-6 pt-28 pb-16 grid md:grid-cols-2 gap-12 items-center relative z-10">
+      <!-- Mobile photo (shows above text on small screens) -->
+      <div class="flex md:hidden justify-center pt-4">
+        <div class="relative">
+          <div class="photo-ring">
+            <img src="profile.jpg" alt="Ye Kyaw Htoo Sein" class="w-36 h-36 object-cover object-top rounded-full" />
+          </div>
+          <div class="absolute -top-2 -right-2 bg-surface-card border border-surface-border rounded-xl px-2 py-1 glow-sm">
+            <p class="text-xs font-bold text-amber-400">PMP® ✓</p>
+          </div>
+        </div>
+      </div>
       <!-- Text -->
       <div class="space-y-7">
         <div class="inline-flex items-center gap-2 bg-surface-card border border-surface-border rounded-full px-4 py-2 text-sm text-slate-400">
@@ -663,6 +690,13 @@
     // Init EmailJS
     if (EMAILJS_PUBLIC_KEY !== 'REPLACE_ME_PUBLIC_KEY') {
       emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+    }
+
+    // ── Mobile menu ──
+    function toggleMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+      menu.classList.toggle('flex');
     }
 
     // ── Skill bar animation ──
